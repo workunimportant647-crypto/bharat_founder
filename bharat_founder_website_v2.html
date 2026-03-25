@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bharat Founder</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --orange: #ff6600;
+    --white: #ffffff;
+    --green: #00cc44;
+    --cyan: #00ffcc;
+    --purple: #a855f7;
+    --bg: #000005;
+  }
+
+  body {
+    background: var(--bg);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated grid background */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,200,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,200,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+    z-index: 0;
+  }
+
+  @keyframes gridMove {
+    0% { transform: perspective(500px) rotateX(0deg) translateY(0); }
+    100% { transform: perspective(500px) rotateX(0deg) translateY(50px); }
+  }
+
+  /* Glow blobs */
+  .blob1 {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+    z-index: 0;
+    animation: pulse 6s ease-in-out infinite;
+  }
+  .blob2 {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0,255,200,0.08) 0%, transparent 70%);
+    bottom: -80px;
+    right: -80px;
+    z-index: 0;
+    animation: pulse 8s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+  }
+
+  /* Scan line effect */
+  .scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,255,200,0.4), transparent);
+    z-index: 1;
+    animation: scan 4s linear infinite;
+  }
+
+  @keyframes scan {
+    0% { top: 0; opacity: 1; }
+    100% { top: 100vh; opacity: 0; }
+  }
+
+  /* Main container */
+  .container {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 60px 24px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Top badge */
+  .badge {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    border: 1px solid rgba(0,255,200,0.3);
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 32px;
+    background: rgba(0,255,200,0.05);
+    animation: flicker 3s ease-in-out infinite;
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.4; }
+    94% { opacity: 1; }
+    96% { opacity: 0.6; }
+    97% { opacity: 1; }
+  }
+
+  /* Logo */
+  .logo-wrap {
+    text-align: center;
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .logo-bharat {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 52px;
+    letter-spacing: 8px;
+    color: #fff;
+    text-shadow:
+      0 0 20px rgba(255,255,255,0.5),
+      0 0 60px rgba(0,255,200,0.2);
+    line-height: 1;
+    animation: textGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 60px rgba(0,255,200,0.2); }
+    50% { text-shadow: 0 0 30px rgba(255,255,255,0.8), 0 0 80px rgba(0,255,200,0.4); }
+  }
+
+  .logo-founder {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 40px;
+    color: #fff;
+    letter-spacing: 2px;
+    opacity: 0.9;
+    line-height: 1.2;
+  }
+
+  /* Tricolor line animated */
+  .triline {
+    width: 260px;
+    height: 3px;
+    display: flex;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 16px 0 28px 0;
+    position: relative;
+  }
+  .triline::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
+    animation: shimmer 2s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .triline div { flex: 1; }
+  .t1 { background: #ff6600; }
+  .t2 { background: #ffffff; }
+  .t3 { background: #00cc44; }
+
+  /* Tagline */
+  .tagline {
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+
+  .tagline .highlight {
+    color: var(--cyan);
+    font-weight: 700;
+  }
+
+  /* Stats bar */
+  .stats {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    margin-bottom: 36px;
+    border: 1px solid rgba(0,255,200,0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0,255,200,0.03);
+  }
+
+  .stat {
+    flex: 1;
+    padding: 14px 8px;
+    text-align: center;
+    border-right: 1px solid rgba(0,255,200,0.1);
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cyan);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Pillars */
+  .pillars {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pill {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 1px;
+    transition: all 0.3s;
+  }
+
+  .pill:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: rgba(0,255,200,0.05);
+  }
+
+  /* Links */
+  .links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .link-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+  }
+
+  .link-btn:hover::before { transform: translateX(100%); }
+
+  .link-btn .left { display: flex; align-items: center; gap: 12px; }
+  .link-btn .icon { font-size: 20px; }
+  .link-btn .arrow {
+    font-family: 'Orbitron', monospace;
+    font-size: 14px;
+    opacity: 0.5;
+  }
+
+  .btn-instagram {
+    background: linear-gradient(135deg, rgba(131,58,180,0.2), rgba(253,29,29,0.2), rgba(252,176,69,0.2));
+    border-color: rgba(253,29,29,0.3);
+    color: #fff;
+  }
+  .btn-instagram:hover { border-color: rgba(253,29,29,0.8); }
+
+  .btn-youtube {
+    background: rgba(255,0,0,0.1);
+    border-color: rgba(255,0,0,0.3);
+    color: #fff;
+  }
+  .btn-youtube:hover { border-color: rgba(255,0,0,0.8); }
+
+  .btn-whatsapp {
+    background: rgba(37,211,102,0.1);
+    border-color: rgba(37,211,102,0.3);
+    color: #fff;
+  }
+  .btn-whatsapp:hover { border-color: rgba(37,211,102,0.8); }
+
+  .btn-telegram {
+    background: rgba(0,136,204,0.1);
+    border-color: rgba(0,136,204,0.3);
+    color: #fff;
+  }
+  .btn-telegram:hover { border-color: rgba(0,136,204,0.8); }
+
+  /* Footer */
+  .footer {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  .flag { font-size: 26px; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="blob1"></div>
+<div class="blob2"></div>
+<div class="scanline"></div>
+
+<div class="container">
+  <div class="flag">🇮🇳</div>
+
+  <div class="badge">EST. 2026 • BHARAT • FOUNDER</div>
+
+  <div class="logo-wrap">
+    <div class="logo-bharat">BHARAT</div>
+    <div class="logo-founder">founder</div>
+  </div>
+
+  <div class="triline">
+    <div class="t1"></div>
+    <div class="t2"></div>
+    <div class="t3"></div>
+  </div>
+
+  <div class="tagline">
+    Building the next gen of <span class="highlight">Bharat</span><br>
+    through <span class="highlight">Finance</span> • <span class="highlight">Business</span> • <span class="highlight">Self Growth</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">Ideas</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">24/7</span>
+      <span class="stat-label">Content</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">🇮🇳</span>
+      <span class="stat-label">Made In India</span>
+    </div>
+  </div>
+
+  <div class="pillars">
+    <div class="pill">📈 Finance</div>
+    <div class="pill">💡 Business</div>
+    <div class="pill">🧠 Self Growth</div>
+    <div class="pill">🚀 Mindset</div>
+  </div>
+
+  <div class="links">
+    <a class="link-btn btn-instagram" href="https://instagram.com/bharat_founder" target="_blank">
+      <div class="left"><span class="icon">📸</span><span>Instagram</span></div>
+      <span class="arrow">→</span>
+    </a>
+    <a class="link-btn btn-youtube" href="https://youtube.com/@bharatfounder" target="_blank">
+      <div class="left"><span class="icon">▶️</span><span>YouTube</span></div>
+      <span class="arrow">→</span>
+    </a>
+    <a class="link-btn btn-whatsapp" href="https://wa.me/919999999999" target="_blank">
+      <div class="left"><span class="icon">💬</span><span>WhatsApp Community</span></div>
+      <span class="arrow">→</span>
+    </a>
+    <a class="link-btn btn-telegram" href="https://t.me/bharatfounder" target="_blank">
+      <div class="left"><span class="icon">✈️</span><span>Telegram Channel</span></div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <div class="footer">© 2026 BHARAT FOUNDER • MADE IN INDIA 🇮🇳</div>
+</div>
+
+</body>
+</html>
